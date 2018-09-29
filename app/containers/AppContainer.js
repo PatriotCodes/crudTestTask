@@ -5,6 +5,7 @@ import UserContainer from './UserContainer';
 import InitialContainer from './InitialContainer';
 import RecipesAdmin from './RecipesAdmin';
 import { StyleSheet, View } from 'react-native';
+import CategoriesAdmin from "./CategoriesAdmin";
 
 class AppContainer extends Component {
 
@@ -21,6 +22,9 @@ class AppContainer extends Component {
                     <Scene key="adminRecipes" component={RecipesAdmin}
                            renderRightButton={<View/>}
                            title="Recipes Management"/>
+                    <Scene key="adminCategories" component={CategoriesAdmin}
+                           renderRightButton={<View/>}
+                           title="Categories Management"/>
                     <Scene key="user" component={UserContainer}
                            renderRightButton={<View/>}
                            title="User Panel"/>

@@ -1,4 +1,4 @@
-import { CREATE_CATEGORY, DELETE_CATEGORY, GET_ALL_CATEGORIES, LOADING } from '../constants/actionTypes';
+import {CREATE_CATEGORY, DELETE_CATEGORY, GET_ALL_CATEGORIES, LOADING} from '../constants/actionTypes';
 
 let initialState = { categories: [], loading: true };
 
@@ -9,13 +9,26 @@ export default categoriesReducer = (state = initialState, action) => {
             return state;
         }
         case CREATE_CATEGORY: {
-            return state;
+            return Object.assign({}, state, {
+                categories: [
+                    ...state.categories,
+                    {
+                        _id: action.response._id,
+                        title: action.response.title,
+                        parentId: action.response.parentId,
+                    }
+                ],
+                loading: false
+            });
         }
         case LOADING: {
             return state;
         }
         case DELETE_CATEGORY: {
-            return state;
+            return {
+                ...state,
+                categories: state.categories.filter((item, index) => action.id !== item._id)
+            }
         }
         default:
             return state;

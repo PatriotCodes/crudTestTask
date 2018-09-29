@@ -25,7 +25,7 @@ class AdminContainer extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight style = {globalStyles.primaryButton}
                                     underlayColor={highlightColor}
-                                    onPress={() => null}>
+                                    onPress={() => Actions.adminCategories()}>
                     <Text style={globalStyles.primaryButtonText}>Categories management</Text>
                 </TouchableHighlight>
             </View>

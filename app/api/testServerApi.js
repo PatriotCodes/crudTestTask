@@ -42,8 +42,34 @@ class testServerApi {
         });
     }
 
+    static createCategory(title) {
+        return fetch('https://test-task-server.herokuapp.com/api/v1/category/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "title":title
+            }),
+        }).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
     static deleteRecipe(id) {
         return fetch('https://test-task-server.herokuapp.com/api/v1/recipe/' + id, {
+            method: 'DELETE',
+        }).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
+    static deleteCategory(id) {
+        return fetch('https://test-task-server.herokuapp.com/api/v1/category/' + id, {
             method: 'DELETE',
         }).then(response => {
             return response.json();
