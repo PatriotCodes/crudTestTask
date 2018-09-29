@@ -9,7 +9,16 @@ export default recipesReducer = (state = initialState, action) => {
             return state;
         }
         case CREATE_RECIPE: {
-            return state;
+            return Object.assign({}, state, {
+                recipes: [
+                    ...state.recipes,
+                    {
+                        title: action.response.title,
+                        text: action.response.text,
+                        categoryId: action.response.categoryID,
+                    }
+                ]
+            });
         }
         case LOADING: {
             return state;

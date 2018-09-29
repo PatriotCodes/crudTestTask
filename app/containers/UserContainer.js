@@ -20,7 +20,7 @@ class UserContainer extends Component {
                 {this.props.loading && <LoadingIndicator/>}
                 {!this.props.loading && <View>
                 {this.props.recipes.map(recipe =>
-                    <Text key={recipe.id}>
+                    <Text key={recipe._id}>
                         {recipe.title}
                     </Text>
                 )}</View>}

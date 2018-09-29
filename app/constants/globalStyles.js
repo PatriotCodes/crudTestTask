@@ -8,7 +8,14 @@ const globalStyles = StyleSheet.create({
     },
     primaryButton: {
         alignItems: 'center',
-        backgroundColor: '#096484',
+        backgroundColor: '#0073AA',
+        padding: 10,
+        marginBottom: 10,
+        width: '50%',
+    },
+    secondaryButton: {
+        alignItems: 'center',
+        backgroundColor: '#DC3232',
         padding: 10,
         marginBottom: 10,
         width: '50%',
@@ -19,6 +26,7 @@ const globalStyles = StyleSheet.create({
     }
 });
 
-export const highlightColor = '#bcbcbc';
+export const highlightColor = '#00A0D2';
+export const highlightColorSecondary = '#ff5151';
 
 export default globalStyles;
