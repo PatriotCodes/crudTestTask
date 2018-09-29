@@ -17,6 +17,7 @@ class CreateRecipe extends Component {
             visible: this.props.modalVisible,
             title: "",
             text: "",
+            categoryID: "5b8ff807060dad0400be34b0",
         };
     }
 
@@ -50,7 +51,7 @@ class CreateRecipe extends Component {
                                    value={this.state.text}/>
                         <TouchableHighlight style = {globalStyles.primaryButton}
                                             underlayColor={highlightColor}
-                                            onPress={() => null}>
+                                            onPress={() => this.onPressDone()}>
                             <Text style={globalStyles.primaryButtonText}>Done</Text>
                         </TouchableHighlight>
                         <TouchableHighlight style = {globalStyles.secondaryButton}
@@ -73,11 +74,11 @@ class CreateRecipe extends Component {
     }
 
     onPressDone() {
-        if (!(this.state.text.trim().length === 0)) {
-            this.props.addNew(this.state.text);
+        if (!(this.state.title.trim().length === 0) && !(this.state.text.trim().length === 0)) {
+            this.props.addNew(this.state.title, this.state.text, this.state.categoryID);
             this.props.closeModal();
         } else {
-            alert("Please enter a valid name")
+            alert("Please enter a valid data");
         }
     }
 

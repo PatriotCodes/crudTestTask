@@ -15,7 +15,7 @@ export default recipesReducer = (state = initialState, action) => {
                     {
                         title: action.response.title,
                         text: action.response.text,
-                        categoryId: action.response.categoryID,
+                        categoryId: action.response.categoryId,
                     }
                 ]
             });

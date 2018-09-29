@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {
     View,
     Text,
@@ -7,6 +8,8 @@ import {
 } from 'react-native';
 import globalStyles, {highlightColor} from '../constants/globalStyles';
 import CreateRecipe from "../components/CreateRecipe";
+import {bindActionCreators} from 'redux';
+import {ActionCreators} from "../actions";
 
 class RecipesAdmin extends Component {
 
@@ -16,14 +19,14 @@ class RecipesAdmin extends Component {
             addNewVisible: false
         };
         this.closeModal = this.closeModal.bind(this);
-        //this.addNew = this.addNewProduct.bind(this);
+        this.addNew = this.addNewRecipe.bind(this);
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <CreateRecipe modalVisible={this.state.addNewVisible}
-                               closeModal={this.closeModal}/>
+                              addNew={this.addNew} closeModal={this.closeModal}/>
                 <TouchableHighlight style = {globalStyles.primaryButton}
                                     underlayColor={highlightColor}
                                     onPress={() => this.setState({addNewVisible: true})}>
@@ -37,6 +40,10 @@ class RecipesAdmin extends Component {
         this.setState({addNewVisible: false})
     }
 
+    addNewRecipe(title,text,categoryID = null) {
+        this.props.createRecipe(title,text,categoryID);
+    }
+
 }
 
 const styles = StyleSheet.create({
@@ -47,4 +54,15 @@ const styles = StyleSheet.create({
     }
 });
 
-export default RecipesAdmin;
+function mapStateToProps(state) {
+    return {
+        recipes: state.recipesReducer.recipes,
+        loading: state.recipesReducer.loading
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ActionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesAdmin);

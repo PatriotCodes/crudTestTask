@@ -24,13 +24,16 @@ class testServerApi {
         });
     }
 
-    static createRecipe(title, text, categoryID = null) {
-        return fetch('https://test-task-server.herokuapp.com/api/v1/category/all', {
+    static createRecipe(title, text, categoryID) {
+        return fetch('https://test-task-server.herokuapp.com/api/v1/recipe/create', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
-                title: title,
-                text: text,
-                categoryID: categoryID,
+                "title":title,
+                "text":text,
+                "categoryId":categoryID
             }),
         }).then(response => {
             return response.json();

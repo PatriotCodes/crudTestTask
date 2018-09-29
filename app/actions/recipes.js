@@ -11,9 +11,9 @@ export function createRecipe(title,text,categoryID) {
     };
 }
 
-export function createRecipeSuccess(recipe) {
+export function createRecipeSuccess(response) {
     return (dispatch) => {
-        dispatch({type: CREATE_RECIPE, recipe: recipe});
+        dispatch({type: CREATE_RECIPE, response: response});
     };
 }
 
