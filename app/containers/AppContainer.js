@@ -3,7 +3,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import AdminContainer from './AdminContainer';
 import UserContainer from './UserContainer';
 import InitialContainer from './InitialContainer';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 class AppContainer extends Component {
 
@@ -15,10 +15,10 @@ class AppContainer extends Component {
                            title="CRUD application"
                            initial/>
                     <Scene key="admin" component={AdminContainer}
-                           hideNavBar={true}
+                           renderRightButton={<View/>}
                            title="Admin Panel"/>
                     <Scene key="user" component={UserContainer}
-                           hideNavBar={true}
+                           renderRightButton={<View/>}
                            title="User Panel"/>
                 </Scene>
             </Router>

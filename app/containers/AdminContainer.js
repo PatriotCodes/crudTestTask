@@ -15,3 +15,5 @@ class AdminContainer extends Component {
     }
 
 }
+
+export default AdminContainer;
