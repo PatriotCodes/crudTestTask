@@ -19,6 +19,7 @@ class CreateRecipe extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            itemId: this.props.itemId,
             visible: this.props.modalVisible,
             title: "",
             text: "",
@@ -62,7 +63,6 @@ class CreateRecipe extends Component {
                                    value={this.state.text}/>
                         <Text style={globalStyles.primaryText}>Select Category:</Text>
                         <Picker
-                            selectedValue = {this.state.categoryID}
                             mode="dropdown"
                             style={{width: "90%", paddingBottom: 4}}
                             onValueChange={this.onCategoryChange}>

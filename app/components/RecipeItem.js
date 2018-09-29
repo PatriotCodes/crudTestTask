@@ -4,7 +4,7 @@ import globalStyles, {highlightColor,highlightColorSecondary} from '../constants
 import {deleteRecipe, editRecipe} from "../actions/recipes";
 import {connect} from "react-redux";
 
-class RecipeEdit extends Component {
+class RecipeItem extends Component {
 
     render() {
         return (
@@ -41,7 +41,7 @@ class RecipeEdit extends Component {
     };
 
     onPressEdit = (id) => {
-        this.props.editRecipe(id);
+        //this.props.editRecipe(id);
     }
 
 }
@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(null, {deleteRecipe, editRecipe})(RecipeEdit);
+export default connect(null, {deleteRecipe, editRecipe})(RecipeItem);

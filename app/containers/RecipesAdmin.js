@@ -12,7 +12,7 @@ import CreateRecipe from "../components/CreateRecipe";
 import {bindActionCreators} from 'redux';
 import {ActionCreators} from "../actions";
 import LoadingIndicator from '../components/LoadingIndicator';
-import RecipeEdit from '../components/RecipeEdit';
+import RecipeItem from '../components/RecipeItem';
 
 class RecipesAdmin extends Component {
 
@@ -40,7 +40,7 @@ class RecipesAdmin extends Component {
                     <FlatList
                         data={this.props.recipes}
                         renderItem={({item}) => (
-                            <RecipeEdit title={item.title} id={item._id}/>
+                            <RecipeItem title={item.title} id={item._id}/>
                         )}
                         keyExtractor={item => item._id.toString()}
                         ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}

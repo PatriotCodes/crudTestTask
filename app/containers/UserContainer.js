@@ -2,16 +2,17 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
     View,
-    Text,
+    FlatList, StyleSheet,
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 import {ActionCreators} from "../actions";
 import LoadingIndicator from '../components/LoadingIndicator';
+import CategoryUser from '../components/CategoryUser';
 
 class UserContainer extends Component {
 
     componentDidMount() {
-        this.props.getAllRecipes();
+        this.props.getAllCategories();
     }
 
     render() {
@@ -19,21 +20,33 @@ class UserContainer extends Component {
             <View style={{flex: 1}}>
                 {this.props.loading && <LoadingIndicator/>}
                 {!this.props.loading && <View>
-                {this.props.recipes.map(recipe =>
-                    <Text key={recipe._id}>
-                        {recipe.title}
-                    </Text>
-                )}</View>}
+                    <FlatList
+                        data={this.props.categories}
+                        renderItem={({item}) => (
+                            <CategoryUser title={item.title} id={item._id}/>
+                        )}
+                        keyExtractor={item => item._id.toString()}
+                        ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
+                    />
+                </View>}
             </View>
         )
     }
 
 }
 
+const styles = StyleSheet.create({
+    itemSeparator: {
+        height: 1,
+        width: "100%",
+        backgroundColor: "#d5d5d6",
+    },
+});
+
 function mapStateToProps(state) {
     return {
-        recipes: state.recipesReducer.recipes,
-        loading: state.recipesReducer.loading,
+        categories: state.categoriesReducer.categories,
+        loading: state.categoriesReducer.loading,
     }
 }
 
