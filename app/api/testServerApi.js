@@ -42,6 +42,25 @@ class testServerApi {
         });
     }
 
+    static createArticle(title, text, categoryID, description) {
+        return fetch('https://test-task-server.herokuapp.com/api/v1/article/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "title":title,
+                "text":text,
+                "description":description,
+                "categoryId":categoryID
+            }),
+        }).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
     static createCategory(title) {
         return fetch('https://test-task-server.herokuapp.com/api/v1/category/create', {
             method: 'POST',
@@ -70,6 +89,16 @@ class testServerApi {
 
     static deleteCategory(id) {
         return fetch('https://test-task-server.herokuapp.com/api/v1/category/' + id, {
+            method: 'DELETE',
+        }).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
+    static deleteArticle(id) {
+        return fetch('https://test-task-server.herokuapp.com/api/v1/article/' + id, {
             method: 'DELETE',
         }).then(response => {
             return response.json();

@@ -20,7 +20,7 @@ class AdminContainer extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight style = {globalStyles.primaryButton}
                                     underlayColor={highlightColor}
-                                    onPress={() => null}>
+                                    onPress={() => Actions.adminArticles()}>
                     <Text style={globalStyles.primaryButtonText}>Articles management</Text>
                 </TouchableHighlight>
                 <TouchableHighlight style = {globalStyles.primaryButton}

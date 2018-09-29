@@ -15,13 +15,28 @@ export default articlesReducer = (state = initialState, action) => {
             return state;
         }
         case CREATE_ARTICLE: {
-            return state;
+            return Object.assign({}, state, {
+                articles: [
+                    ...state.articles,
+                    {
+                        _id: action.response._id,
+                        title: action.response.title,
+                        text: action.response.text,
+                        categoryId: action.response.categoryId,
+                        description: action.response.description,
+                    }
+                ],
+                loading: false
+            });
         }
         case LOADING: {
             return state;
         }
         case DELETE_ARTICLE: {
-            return state;
+            return {
+                ...state,
+                articles: state.articles.filter((item, index) => action.id !== item._id)
+            }
         }
         case ARTICLES_BY_CAT: {
             state = Object.assign({}, state, {articles: action.articles, loading: false});

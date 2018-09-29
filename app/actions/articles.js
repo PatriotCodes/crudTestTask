@@ -1,13 +1,41 @@
-import {CREATE_ARTICLE, DELETE_ARTICLE, GET_ALL_ARTICLES, LOADING, ARTICLES_BY_CAT} from "../constants/actionTypes";
+import {
+    CREATE_ARTICLE,
+    DELETE_ARTICLE,
+    GET_ALL_ARTICLES,
+    LOADING,
+    ARTICLES_BY_CAT,
+} from "../constants/actionTypes";
 import testServerApi from "../api/testServerApi";
 
-export function createArticle(article) {
+export function createArticle(title,text,categoryID,description) {
     return (dispatch) => {
-        dispatch({type: CREATE_ARTICLE, article: article});
+        dispatch({type: LOADING});
+        return testServerApi.createArticle(title,text,categoryID,description).then(response => {
+            dispatch(createArticleSuccess(response));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function createArticleSuccess(response) {
+    return (dispatch) => {
+        dispatch({type: CREATE_ARTICLE, response: response});
     };
 }
 
 export function deleteArticle(id) {
+    return (dispatch) => {
+        dispatch({type: LOADING});
+        return testServerApi.deleteArticle(id).then(() => {
+            dispatch(deleteArticleSuccess(id));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function deleteArticleSuccess(id) {
     return (dispatch) => {
         dispatch({type: DELETE_ARTICLE, id: id});
     };

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableHighlight} from 'react-native';
-import globalStyles, {highlightColor,highlightColorSecondary} from '../constants/globalStyles';
-import {deleteCategory, editCategory} from "../actions/categories";
+import globalStyles, {highlightColorSecondary} from '../constants/globalStyles';
+import {deleteArticle} from "../actions/articles";
 import {connect} from "react-redux";
 
-class CategoryEdit extends Component {
+class ArticleItem extends Component {
 
     render() {
         return (
@@ -37,11 +37,11 @@ class CategoryEdit extends Component {
     }
 
     onPressDelete = (id) => {
-        this.props.deleteCategory(id);
+        this.props.deleteArticle(id);
     };
 
     onPressEdit = (id) => {
-        this.props.editCategory(id);
+        //this.props.editRecipe(id);
     }
 
 }
@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(null, {deleteCategory, editCategory})(CategoryEdit);
+export default connect(null, {deleteArticle})(ArticleItem);

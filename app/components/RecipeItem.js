@@ -22,16 +22,16 @@ class RecipeItem extends Component {
                 <View style={styles.recipeTextViewStyle}>
                     <Text style={globalStyles.primaryText}>{this.props.title}</Text>
                 </View>
-                <View style={styles.removeBtnWrapper}>
-                    <TouchableHighlight key={this.props.id}
-                                        underlayColor={highlightColor}
-                                        onPress={() => this.onPressEdit(this.props.id)}
-                                        style={styles.editBtn}>
-                        <Text style={[globalStyles.primaryText,{textAlign: "center",
-                            color: "white",paddingTop: 14,
-                            paddingBottom: 14,}]}>EDIT</Text>
-                    </TouchableHighlight>
-                </View>
+                {/*<View style={styles.removeBtnWrapper}>*/}
+                    {/*<TouchableHighlight key={this.props.id}*/}
+                                        {/*underlayColor={highlightColor}*/}
+                                        {/*onPress={() => this.onPressEdit(this.props.id)}*/}
+                                        {/*style={styles.editBtn}>*/}
+                        {/*<Text style={[globalStyles.primaryText,{textAlign: "center",*/}
+                            {/*color: "white",paddingTop: 14,*/}
+                            {/*paddingBottom: 14,}]}>EDIT</Text>*/}
+                    {/*</TouchableHighlight>*/}
+                {/*</View>*/}
             </View>
         );
     }

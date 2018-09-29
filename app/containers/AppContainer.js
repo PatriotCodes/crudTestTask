@@ -9,6 +9,7 @@ import CategoriesAdmin from "./CategoriesAdmin";
 import CategoryContainer from "./CategoryContainer";
 import SingleRecipe from "../components/SingleRecipe";
 import SingleArticle from "../components/SingleArticle";
+import ArticlesAdmin from './ArticlesAdmin';
 
 class AppContainer extends Component {
 
@@ -25,6 +26,9 @@ class AppContainer extends Component {
                     <Scene key="adminRecipes" component={RecipesAdmin}
                            renderRightButton={<View/>}
                            title="Recipes Management"/>
+                    <Scene key="adminArticles" component={ArticlesAdmin}
+                           renderRightButton={<View/>}
+                           title="Articles Management"/>
                     <Scene key="adminCategories" component={CategoriesAdmin}
                            renderRightButton={<View/>}
                            title="Categories Management"/>
