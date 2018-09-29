@@ -42,6 +42,16 @@ class testServerApi {
         });
     }
 
+    static deleteRecipe(id) {
+        return fetch('https://test-task-server.herokuapp.com/api/v1/recipe/' + id, {
+            method: 'DELETE',
+        }).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
 }
 
 export default testServerApi;

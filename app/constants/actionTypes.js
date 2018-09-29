@@ -2,6 +2,7 @@
 export const CREATE_RECIPE            = 'CREATE_RECIPE';
 export const DELETE_RECIPE            = 'DELETE_RECIPE';
 export const GET_ALL_RECIPES          = 'GET_ALL_RECIPES';
+export const EDIT_RECIPE              = 'EDIT_RECIPE';
 
 // ARTICLES
 export const CREATE_ARTICLE           = 'CREATE_ARTICLE';

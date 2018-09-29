@@ -13,18 +13,23 @@ export default recipesReducer = (state = initialState, action) => {
                 recipes: [
                     ...state.recipes,
                     {
+                        _id: action.response._id,
                         title: action.response.title,
                         text: action.response.text,
                         categoryId: action.response.categoryId,
                     }
-                ]
+                ],
+                loading: false
             });
         }
         case LOADING: {
             return state;
         }
         case DELETE_RECIPE: {
-            return state;
+            return {
+                ...state,
+                recipes: state.recipes.filter((item, index) => action.id !== item._id)
+            }
         }
         default:
             return state;

@@ -5,13 +5,20 @@ import {
     Text,
     StyleSheet,
     TouchableHighlight,
+    FlatList
 } from 'react-native';
 import globalStyles, {highlightColor} from '../constants/globalStyles';
 import CreateRecipe from "../components/CreateRecipe";
 import {bindActionCreators} from 'redux';
 import {ActionCreators} from "../actions";
+import LoadingIndicator from '../components/LoadingIndicator';
+import RecipeEdit from '../components/RecipeEdit';
 
 class RecipesAdmin extends Component {
+
+    componentDidMount() {
+        this.props.getAllRecipes();
+    }
 
     constructor(props) {
         super(props);
@@ -27,7 +34,19 @@ class RecipesAdmin extends Component {
             <View style={styles.container}>
                 <CreateRecipe modalVisible={this.state.addNewVisible}
                               addNew={this.addNew} closeModal={this.closeModal}/>
-                <TouchableHighlight style = {globalStyles.primaryButton}
+                {this.props.loading && <LoadingIndicator/>}
+                {!this.props.loading &&
+                <View>
+                    <FlatList
+                        data={this.props.recipes}
+                        renderItem={({item}) => (
+                            <RecipeEdit title={item.title} id={item._id}/>
+                        )}
+                        keyExtractor={item => item._id.toString()}
+                        ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
+                    />
+                    </View>}
+                <TouchableHighlight style = {styles.addBtn}
                                     underlayColor={highlightColor}
                                     onPress={() => this.setState({addNewVisible: true})}>
                     <Text style={globalStyles.primaryButtonText}>Create Recipe</Text>
@@ -49,8 +68,19 @@ class RecipesAdmin extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+    },
+    itemSeparator: {
+        height: 1,
+        width: "100%",
+        backgroundColor: "#d5d5d6",
+    },
+    addBtn: {
         alignItems: 'center',
+        backgroundColor: '#0073AA',
+        padding: 10,
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
     }
 });
 
