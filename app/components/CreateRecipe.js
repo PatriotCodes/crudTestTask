@@ -5,9 +5,14 @@ import {
     TouchableHighlight,
     Modal,
     TextInput,
+    Picker
 } from 'react-native';
 import {highlightColor, highlightColorSecondary} from "../constants/globalStyles";
 import globalStyles from "../constants/globalStyles";
+import {bindActionCreators} from "redux";
+import LoadingIndicator from '../components/LoadingIndicator';
+import {connect} from "react-redux";
+import {ActionCreators} from "../actions";
 
 class CreateRecipe extends Component {
 
@@ -17,8 +22,12 @@ class CreateRecipe extends Component {
             visible: this.props.modalVisible,
             title: "",
             text: "",
-            categoryID: "5b8ff807060dad0400be34b0",
+            categoryID: null,
         };
+    }
+
+    componentDidMount() {
+        this.props.getAllCategories();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -30,6 +39,8 @@ class CreateRecipe extends Component {
     render() {
         return (
             <View>
+                {this.props.loading && <LoadingIndicator/>}
+                {!this.props.loading &&
                 <Modal
                     animationType="slide"
                     transparent={false}
@@ -49,18 +60,30 @@ class CreateRecipe extends Component {
                         <TextInput style={[globalStyles.primaryText, {width: "90%", paddingBottom: 4}]}
                                    onChangeText={(text) => this.onTextChange(text)}
                                    value={this.state.text}/>
-                        <TouchableHighlight style = {globalStyles.primaryButton}
+                        <Text style={globalStyles.primaryText}>Select Category:</Text>
+                        <Picker
+                            mode="dropdown"
+                            style={{width: "90%", paddingBottom: 4}}
+                            onValueChange={this.onCategoryChange}>
+                            {this.props.categories.map((item) => {
+                                    return <Picker.Item
+                                        label={item.title} value={item._id} key={item._id}/>
+                                }
+                            )}
+                        </Picker>
+                        <TouchableHighlight style={[globalStyles.primaryButton, {marginTop: 10}]}
                                             underlayColor={highlightColor}
                                             onPress={() => this.onPressDone()}>
                             <Text style={globalStyles.primaryButtonText}>Done</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight style = {globalStyles.secondaryButton}
+                        <TouchableHighlight style={globalStyles.secondaryButton}
                                             underlayColor={highlightColorSecondary}
                                             onPress={() => this.props.closeModal()}>
                             <Text style={globalStyles.primaryButtonText}>Cancel</Text>
                         </TouchableHighlight>
                     </View>
                 </Modal>
+                }
             </View>
         );
     }
@@ -73,8 +96,14 @@ class CreateRecipe extends Component {
         this.setState({title: title});
     }
 
+    onCategoryChange = value => {
+        this.setState({categoryID: value})
+    };
+
     onPressDone() {
-        if (!(this.state.title.trim().length === 0) && !(this.state.text.trim().length === 0)) {
+        if (!(this.state.title.trim().length === 0)
+            && !(this.state.text.trim().length === 0)
+            && !(this.state.categoryID === null)) {
             this.props.addNew(this.state.title, this.state.text, this.state.categoryID);
             this.props.closeModal();
         } else {
@@ -84,4 +113,15 @@ class CreateRecipe extends Component {
 
 }
 
-export default CreateRecipe;
+function mapStateToProps(state) {
+    return {
+        loading: state.categoriesReducer.loading,
+        categories: state.categoriesReducer.categories
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ActionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRecipe);

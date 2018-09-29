@@ -11,6 +11,7 @@ export const DELETE_ARTICLE           = 'DELETE_ARTICLE';
 // CATEGORIES
 export const CREATE_CATEGORY          = 'CREATE_CATEGORY';
 export const DELETE_CATEGORY          = 'DELETE_CATEGORY';
+export const GET_ALL_CATEGORIES       = 'GET_ALL_CATEGORIES';
 
 // GLOBAL
 export const LOADING                  = 'LOADING';

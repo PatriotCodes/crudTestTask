@@ -23,7 +23,7 @@ class RecipesAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            addNewVisible: false
+            addNewVisible: false,
         };
         this.closeModal = this.closeModal.bind(this);
         this.addNew = this.addNewRecipe.bind(this);
@@ -32,11 +32,11 @@ class RecipesAdmin extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <CreateRecipe modalVisible={this.state.addNewVisible}
-                              addNew={this.addNew} closeModal={this.closeModal}/>
                 {this.props.loading && <LoadingIndicator/>}
                 {!this.props.loading &&
-                <View>
+                <View style={styles.container}>
+                    <CreateRecipe modalVisible={this.state.addNewVisible}
+                                  addNew={this.addNew} closeModal={this.closeModal}/>
                     <FlatList
                         data={this.props.recipes}
                         renderItem={({item}) => (
@@ -45,12 +45,12 @@ class RecipesAdmin extends Component {
                         keyExtractor={item => item._id.toString()}
                         ItemSeparatorComponent={() => <View style={styles.itemSeparator}/>}
                     />
+                    <TouchableHighlight style = {styles.addBtn}
+                                        underlayColor={highlightColor}
+                                        onPress={() => this.setState({addNewVisible: true})}>
+                        <Text style={globalStyles.primaryButtonText}>Create Recipe</Text>
+                    </TouchableHighlight>
                     </View>}
-                <TouchableHighlight style = {styles.addBtn}
-                                    underlayColor={highlightColor}
-                                    onPress={() => this.setState({addNewVisible: true})}>
-                    <Text style={globalStyles.primaryButtonText}>Create Recipe</Text>
-                </TouchableHighlight>
             </View>
         )
     }
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
     return {
         recipes: state.recipesReducer.recipes,
-        loading: state.recipesReducer.loading
+        loading: state.recipesReducer.loading,
     }
 }
 
