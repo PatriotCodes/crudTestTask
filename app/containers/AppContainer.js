@@ -7,6 +7,8 @@ import RecipesAdmin from './RecipesAdmin';
 import { StyleSheet, View } from 'react-native';
 import CategoriesAdmin from "./CategoriesAdmin";
 import CategoryContainer from "./CategoryContainer";
+import SingleRecipe from "../components/SingleRecipe";
+import SingleArticle from "../components/SingleArticle";
 
 class AppContainer extends Component {
 
@@ -32,6 +34,12 @@ class AppContainer extends Component {
                     <Scene key="category" component={CategoryContainer}
                            renderRightButton={<View/>}
                            title="Category Recipes and Articles"/>
+                    <Scene key="singleRecipe" component={SingleRecipe}
+                           renderRightButton={<View/>}
+                           title="Recipe Info"/>
+                    <Scene key="singleArticle" component={SingleArticle}
+                           renderRightButton={<View/>}
+                           title="Article Info"/>
                 </Scene>
             </Router>
         )

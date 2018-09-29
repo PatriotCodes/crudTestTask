@@ -6,6 +6,10 @@ const globalStyles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontSize: 20,
     },
+    secondaryText: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+    },
     primaryButton: {
         alignItems: 'center',
         backgroundColor: '#0073AA',

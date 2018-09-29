@@ -3,14 +3,14 @@ import {Text, View, TouchableHighlight, StyleSheet} from 'react-native';
 import globalStyles, {highlightColor} from '../constants/globalStyles';
 import {Actions} from "react-native-router-flux";
 
-class RecipeUser extends Component {
+class ArticleUser extends Component {
 
     render() {
         return (
             <View style={{flex: 1}}>
                 <TouchableHighlight style={styles.recipeTextViewStyle} underlayColor={highlightColor}
-                                    onPress={() => Actions.singleRecipe({title: this.props.title,
-                                    text: this.props.text})}>
+                                    onPress={() => Actions.singleArticle({title: this.props.title,
+                                        text: this.props.text, description: this.props.description})}>
                     <Text style={[globalStyles.primaryText,{color: '#FFFFFF'}]}>{this.props.title}</Text>
                 </TouchableHighlight>
             </View>
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RecipeUser;
+export default ArticleUser;
